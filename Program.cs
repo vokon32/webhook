@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Channels;
 using Webhook.Data;
@@ -13,11 +14,29 @@ builder.Services.AddScoped<WebhookDispatcher>();
 
 builder.Services.AddDbContext<WebhooksDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("webhooks")));
 
-builder.Services.AddHostedService<WebhookProcessor>();
+//builder.Services.AddHostedService<WebhookProcessor>();
 
-builder.Services.AddSingleton(_ =>
+//builder.Services.AddSingleton(_ =>
+//{
+//    return Channel.CreateBounded<WebhookDispatch>(new BoundedChannelOptions(100) { FullMode = BoundedChannelFullMode.Wait });
+//});
+
+builder.Services.AddMassTransit(busConfig =>
 {
-    return Channel.CreateBounded<WebhookDispatch>(new BoundedChannelOptions(100) { FullMode = BoundedChannelFullMode.Wait });
+    busConfig.SetKebabCaseEndpointNameFormatter();
+
+    busConfig.AddConsumer<WebhookDispatchedConsumer>();
+
+    busConfig.AddConsumer<WebhookTriggeredConsumer>();
+
+    busConfig.UsingRabbitMq((context, config) =>
+    {
+
+        var rabbitmq = builder.Configuration.GetConnectionString("rabbitmq");
+        config.Host(rabbitmq);
+
+        config.ConfigureEndpoints(context);
+    });
 });
 
 

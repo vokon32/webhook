@@ -103,3 +103,8 @@ D:\odu0ne\webhook\Webhook\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.
 D:\odu0ne\webhook\Webhook\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\odu0ne\webhook\Webhook\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\odu0ne\webhook\Webhook\obj\Debug\net8.0\Webhook.csproj.CopyComplete
+D:\odu0ne\webhook\Webhook\bin\Debug\net8.0\MassTransit.dll
+D:\odu0ne\webhook\Webhook\bin\Debug\net8.0\MassTransit.Abstractions.dll
+D:\odu0ne\webhook\Webhook\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
+D:\odu0ne\webhook\Webhook\bin\Debug\net8.0\RabbitMQ.Client.dll
+D:\odu0ne\webhook\Webhook\obj\Debug\net8.0\Webhook.sourcelink.json
